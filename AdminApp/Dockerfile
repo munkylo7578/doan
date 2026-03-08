@@ -1,11 +1,11 @@
 # syntax=docker/dockerfile:1
-FROM node:18-alpine AS build
+FROM node:16-alpine AS build
 
 WORKDIR /app
 
 # Install dependencies first (better layer caching)
 COPY package*.json ./
-RUN npm install --no-audit --no-fund
+RUN npm install --legacy-peer-deps --no-audit --no-fund
 
 # Copy the rest of the sources and build in production mode
 COPY . .
