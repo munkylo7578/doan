@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM node:14-alpine AS build
+FROM node:16-alpine AS build
 
 WORKDIR /app
 
@@ -7,7 +7,7 @@ COPY package*.json ./
 RUN npm install --legacy-peer-deps --no-audit --no-fund
 
 COPY . .
-RUN npx ng build --configuration production
+RUN npm run build
 
 FROM nginx:1.25-alpine AS runtime
 
