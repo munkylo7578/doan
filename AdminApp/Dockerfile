@@ -1,29 +1,25 @@
 # syntax=docker/dockerfile:1
-FROM node:14-alpine AS build
+FROM node:16-alpine AS build
 
 WORKDIR /app
 
+# Install dependencies first (better layer caching)
 COPY package*.json ./
 RUN npm install --no-audit --no-fund
 
+# Copy the rest of the sources and build in production mode
 COPY . .
 RUN npx ng build --configuration production
 
-# --- Runtime Stage ---
-FROM node:14-alpine AS runtime
+FROM nginx:1.25-alpine AS runtime
 
-WORKDIR /app
+# Replace default server config with SPA-friendly config
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Install a lightweight static server
-RUN npm install -g serve
+# Clean default html and copy build output
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=build /app/dist /usr/share/nginx/html
 
-# Copy only the build output from the build stage
-# Note: Angular usually outputs to dist/[project-name]. 
-# Check your angular.json to confirm the exact path.
-COPY --from=build /app/dist /app/dist
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
 
-EXPOSE 8001
-
-# Run 'serve' on the build folder
-# -s flag handles Single Page Application (SPA) routing
-CMD ["serve", "-s", "dist", "-l", "8001"]
