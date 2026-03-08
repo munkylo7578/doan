@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  adminapp:
+    build:
+      context: ./AdminApp
+      dockerfile: Dockerfile
+    image: adminapp:prod
+    container_name: adminapp
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.adminapp.rule=Host(`admin.example.com`)"
+      - "traefik.http.routers.adminapp.entrypoints=websecure"
+      - "traefik.http.services.adminapp.loadbalancer.server.port=80"
+    networks:
+      - traefik
+
+  clientapp:
+    build:
+      context: ./ClientApp
+      dockerfile: Dockerfile
+    image: clientapp:prod
+    container_name: clientapp
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.clientapp.rule=Host(`shop.example.com`)"
+      - "traefik.http.routers.clientapp.entrypoints=websecure"
+      - "traefik.http.services.clientapp.loadbalancer.server.port=80"
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external: true
+
