@@ -99,6 +99,8 @@ import '@boldreports/javascript-reporting-controls/Scripts/data-visualization/ej
 import { ChatsComponent } from './admin/containers/views/chats/chats.component';
 import { BlogsComponent } from './admin/containers/views/blogs/blogs.component';
 import { BlogComponent } from './admin/containers/views/blogs/blog/blog.component';
+import { ChartJSComponent } from './admin/containers/views/chartjs/chartjs.component';
+import { WidgetsComponent } from './admin/containers/views/widgets/widgets.component';
 FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
 @NgModule({
   imports: [
@@ -198,6 +200,8 @@ FusionChartsModule.fcRoot(FusionCharts, charts, FusionTheme);
     ChatsComponent,
     BlogsComponent,
     BlogComponent,
+    ChartJSComponent,
+    WidgetsComponent,
   ],
   providers: [
     IconSetService,
