@@ -10,6 +10,7 @@ import { ToastServiceService } from '../../shared/toast-service.service';
 import {  Size, SizeService } from './size.service';
 import * as signalR from '@microsoft/signalr';
 import { SizeComponent } from './size/size.component';
+import { environment } from '../../../../../environments/environment';
 @Component({
   selector: 'app-sizes',
   templateUrl: './sizes.component.html',
@@ -30,7 +31,7 @@ displayedColumns: string[] = ['id', 'tenSize','tenLoai',
     this.service.getAllSizes();
     const connection = new signalR.HubConnectionBuilder()
     .configureLogging(signalR.LogLevel.Information)
-    .withUrl('https://localhost:44302/notify')
+    .withUrl(environment.BASE_URL + 'notify')
     .build();
   connection.start().then(function () {
     console.log('SignalR Connected!');

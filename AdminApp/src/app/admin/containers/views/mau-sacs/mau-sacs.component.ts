@@ -10,6 +10,7 @@ import { ToastServiceService } from '../../shared/toast-service.service';
 import { MauSac, MauSacService } from './mau-sac.service';
 import { MauSacComponent } from './mau-sac/mau-sac.component';
 import * as signalR from '@microsoft/signalr';
+import { environment } from '../../../../../environments/environment';
 @Component({
   selector: 'app-mau-sacs',
   templateUrl: './mau-sacs.component.html',
@@ -30,7 +31,7 @@ displayedColumns: string[] = ['id', 'maMau','tenLoai',
     this.service.getAllMauSacs();
     const connection = new signalR.HubConnectionBuilder()
     .configureLogging(signalR.LogLevel.Information)
-    .withUrl('https://localhost:44302/notify')
+    .withUrl(environment.BASE_URL + 'notify')
     .build();
   connection.start().then(function () {
     console.log('SignalR Connected!');

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import * as signalR from "@microsoft/signalr";
 import { HttpClient } from "@microsoft/signalr";
 import { ChatService } from "./chat.service";
+import { environment } from '../../../../../environments/environment';
 @Component({
   selector: "app-chats",
   templateUrl: "./chats.component.html",
@@ -14,7 +15,7 @@ export class ChatsComponent implements OnInit {
     this.service.getallchat()
     const connection = new signalR.HubConnectionBuilder()
       .configureLogging(signalR.LogLevel.Information)
-      .withUrl("https://localhost:44302/notify")
+      .withUrl(environment.BASE_URL + 'notify')
       .build();
     connection
       .start()
@@ -40,7 +41,7 @@ export class ChatsComponent implements OnInit {
     formData.append("IdUser", localStorage.getItem("idUser"));
     formData.append("Content", data.Content);
     console.log(formData);
-    this.service.postchat(formData).subscribe(     
+    this.service.postchat(formData).subscribe(
       (res) => {
       }
     );

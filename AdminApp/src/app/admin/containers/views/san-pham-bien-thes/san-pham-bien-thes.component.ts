@@ -8,6 +8,7 @@ import { ToastServiceService } from '../../shared/toast-service.service';
 import { SanPhamBienTheComponent } from './san-pham-bien-the/san-pham-bien-thecomponent';
 import * as signalR from '@microsoft/signalr';
 import { SanPhamBienThe, SanPhamBienTheService, GiaSanPhamMauSacSanPhamSize } from './san-pham-bien-the.service';
+import { environment } from '../../../../../environments/environment';
 @Component({
   selector: 'app-san-pham-bien-thes',
   templateUrl: './san-pham-bien-thes.component.html',
@@ -29,7 +30,7 @@ export class SanPhamBienThesComponent implements OnInit, AfterViewInit {
     this.service.getAllGiaSanPhamMauSacSanPhamSizes();
     const connection = new signalR.HubConnectionBuilder()
     .configureLogging(signalR.LogLevel.Information)
-    .withUrl('https://localhost:44302/notify')
+    .withUrl(environment.BASE_URL + 'notify')
     .build();
   connection.start().then(function () {
     console.log('SignalR Connected!');

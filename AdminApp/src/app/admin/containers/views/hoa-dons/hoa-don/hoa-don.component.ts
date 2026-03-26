@@ -21,7 +21,7 @@ export class HoaDonComponent implements OnInit {
     this.getMotHoaDon(this.service.hoadon.id)
   }
   exportGeneratePdf() {
-    window.open("https://localhost:44302/api/GeneratePdf/orderdetail/"+this.hd.id, "_blank");
+    window.open(environment.BASE_URL + "api/GeneratePdf/orderdetail/"+this.hd.id, "_blank");
   }
   getMotHoaDon(id:any){
     this.service.getMotHoaDonService(id).subscribe(

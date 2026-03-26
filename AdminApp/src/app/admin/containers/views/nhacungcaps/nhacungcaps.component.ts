@@ -10,6 +10,7 @@ import { ToastServiceService } from '../../shared/toast-service.service';
 import * as signalR from '@microsoft/signalr';
 import { NhaCungCapComponent } from './nhacungcap/nhacungcap.component';
 import { NhaCungCap, NhaCungCapService } from './nhacungcap.service';
+import { environment } from '../../../../../environments/environment';
 @Component({
   selector: 'app-nhacungcaps',
   templateUrl: './nhacungcaps.component.html',
@@ -30,7 +31,7 @@ export class NhaCungCapsComponent implements OnInit, AfterViewInit {
     this.service.getAllNhaCungCaps();
     const connection = new signalR.HubConnectionBuilder()
       .configureLogging(signalR.LogLevel.Information)
-      .withUrl('https://localhost:44302/notify')
+      .withUrl(environment.BASE_URL + 'notify')
       .build();
     connection.start().then(function () {
       console.log('SignalR Connected!');

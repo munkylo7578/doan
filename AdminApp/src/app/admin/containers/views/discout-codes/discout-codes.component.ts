@@ -11,6 +11,7 @@ import { CategoryComponent } from '../categories/category/category.component';
 import { DiscountCode, DiscountCodeService } from './discount-code.service';
 import { DiscoutCodeComponent } from './discout-code/discout-code.component';
 import * as signalR from '@microsoft/signalr';
+import { environment } from '../../../../../environments/environment';
 @Component({
   selector: 'app-discout-codes',
   templateUrl: './discout-codes.component.html',
@@ -30,7 +31,7 @@ displayedColumns: string[] = ['id', 'code','sotiengiam',
     this.service.getAllMaGiamGias();
     const connection = new signalR.HubConnectionBuilder()
     .configureLogging(signalR.LogLevel.Information)
-    .withUrl('https://localhost:44302/notify')
+    .withUrl(environment.BASE_URL + 'notify')
     .build();
   connection.start().then(function () {
     console.log('SignalR Connected!');

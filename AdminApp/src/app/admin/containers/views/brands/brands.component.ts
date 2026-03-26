@@ -11,6 +11,7 @@ import { BrandComponent } from './brand/brand.component';
 import { NotifierService } from 'angular-notifier';
 import { ToastrService } from 'ngx-toastr';
 import * as signalR from '@microsoft/signalr';
+import { environment } from '../../../../../../environments/environment';
 @Component({
   selector: 'app-brands',
   templateUrl: './brands.component.html',
@@ -34,7 +35,7 @@ displayedColumns: string[] = ['id', 'ten',
     this.service.getAllBrands();
     const connection = new signalR.HubConnectionBuilder()
     .configureLogging(signalR.LogLevel.Information)
-    .withUrl('https://localhost:44302/notify')
+    .withUrl(environment.BASE_URL + 'notify')
     .build();
   connection.start().then(function () {
     console.log('SignalR Connected!');
