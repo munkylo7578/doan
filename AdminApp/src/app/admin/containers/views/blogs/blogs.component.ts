@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Blog, BlogService } from './blog.service';
 import { BlogComponent } from './blog/blog.component';
 import * as signalR from '@microsoft/signalr';
+import { environment } from '../../../../../../../environments/environment';
 @Component({
   selector: 'app-blogs',
   templateUrl: './blogs.component.html',
@@ -29,7 +30,7 @@ export class BlogsComponent implements OnInit {
     this.service.getAllBlogs()
     const connection = new signalR.HubConnectionBuilder()
     .configureLogging(signalR.LogLevel.Information)
-    .withUrl('https://localhost:44302/notify')
+    .withUrl(environment.BASE_URL + 'notify')
     .build();
   connection.start().then(function () {
     console.log('SignalR Connected!');

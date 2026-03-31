@@ -10,6 +10,7 @@ import { HoaDonComponent } from './hoa-don/hoa-don.component';
 import {  HoaDonUser, HoaDonService } from './hoadon.service';
 import * as signalR from '@microsoft/signalr';
 import { HoaDonEditComponent } from './hoa-don-edit/hoa-don-edit.component';
+import { environment } from '../../../../../environments/environment';
 @Component({
   selector: 'app-hoa-dons',
   templateUrl: './hoa-dons.component.html',
@@ -31,7 +32,7 @@ export class HoaDonsComponent implements OnInit {
     this.service.getAllHoaDons();
     const connection = new signalR.HubConnectionBuilder()
       .configureLogging(signalR.LogLevel.Information)
-      .withUrl('https://localhost:44302/notify')
+      .withUrl(environment.BASE_URL + 'notify')
       .build();
     connection.start().then(function () {
       console.log('SignalR Connected!');
@@ -61,9 +62,9 @@ export class HoaDonsComponent implements OnInit {
   populateForm(selectedRecord: HoaDonUser) {
     this.service.hoadon = Object.assign({}, selectedRecord)
     this.dialog.open(HoaDonEditComponent)
-  } 
+  }
   exportGeneratePdf() {
-    window.open("https://localhost:44302/api/GeneratePdf/allorder", "_blank");
+    window.open(environment.BASE_URL + "api/GeneratePdf/allorder", "_blank");
   }
   clickDelete(id) {
     if (confirm('Bạn có chắc chắn xóa bản ghi này không ??')) {

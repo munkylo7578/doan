@@ -11,6 +11,7 @@ import { ToastServiceService } from '../../shared/toast-service.service';
 import { Category, CategoryService } from './category.service';
 import { CategoryComponent } from './category/category.component';
 import * as signalR from '@microsoft/signalr';
+import { environment } from '../../../../../../environments/environment';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
@@ -32,7 +33,7 @@ displayedColumns: string[] = ['id', 'ten',
     this.service.getAllCategories();
     const connection = new signalR.HubConnectionBuilder()
     .configureLogging(signalR.LogLevel.Information)
-    .withUrl('https://localhost:44302/notify')
+    .withUrl(environment.BASE_URL + 'notify')
     .build();
   connection.start().then(function () {
     console.log('SignalR Connected!');

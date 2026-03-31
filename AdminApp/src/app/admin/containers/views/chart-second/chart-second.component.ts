@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import * as signalR from '@microsoft/signalr';
 import { ChartSecondService } from './chart-second.service';
 import { SelectMonthComponent } from './select-month/select-month.component';
+import { environment } from '../../../../../../environments/environment';
 @Component({
   selector: 'app-chart-second',
   templateUrl: './chart-second.component.html',
@@ -120,7 +121,7 @@ export class ChartSecondComponent implements OnInit {
     this.getTopNhanHieu();
     const connection = new signalR.HubConnectionBuilder()
     .configureLogging(signalR.LogLevel.Information)
-    .withUrl('https://localhost:44302/notify')
+    .withUrl(environment.BASE_URL + 'notify')
     .build();
   connection.start().then(function () {
     console.log('SignalR Connected!');
