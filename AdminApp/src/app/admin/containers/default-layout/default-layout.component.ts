@@ -39,7 +39,7 @@ export class DefaultLayoutComponent implements OnInit {
     this.getNotificationCount();
     const connection = new signalR.HubConnectionBuilder()
       .configureLogging(signalR.LogLevel.Information)
-      .withUrl('https://localhost:44302/notify')
+      .withUrl('https://doanapi.munkylo.xyz/notify')
       .build();
     connection.start().then(function () {
       console.log('SignalR Connected!');

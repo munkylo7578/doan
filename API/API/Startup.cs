@@ -55,10 +55,10 @@ namespace API
             services.AddMvc();
             services.AddCors(o => o.AddPolicy("CorsPolicy", builder => {
                 builder
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .AllowCredentials()
-                .WithOrigins("http://localhost:4200", "http://localhost:4300");
+                    .AllowAnyOrigin() // Sets Access-Control-Allow-Origin to *
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+                // .AllowCredentials() <--- This MUST be removed or commented out
             }));
             services.AddSignalR();
             services.AddControllersWithViews();

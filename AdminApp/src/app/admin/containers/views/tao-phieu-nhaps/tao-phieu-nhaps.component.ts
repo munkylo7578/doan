@@ -8,6 +8,7 @@ import { HttpClient } from "@angular/common/http";
 import { MatDialog } from "@angular/material/dialog";
 import { ToastServiceService } from "../../shared/toast-service.service";
 import { TaoPhieuNhapComponent } from "./tao-phieu-nhap/tao-phieu-nhap.component";
+import { environment } from "../../../../../environments/environment";
 @Component({
   selector: "app-tao-phieu-nhaps",
   templateUrl: "./tao-phieu-nhaps.component.html",
@@ -22,7 +23,7 @@ export class TaoPhieuNhapsComponent implements OnInit, AfterViewInit {
     public http: HttpClient,
     public dialog: MatDialog,
     public serviceToast: ToastServiceService
-  ) {}
+  ) { }
   displayedColumns: string[] = [
     "id",
     "soChungTu",
@@ -36,7 +37,7 @@ export class TaoPhieuNhapsComponent implements OnInit, AfterViewInit {
     this.service.getAllPhieuNhaps();
     const connection = new signalR.HubConnectionBuilder()
       .configureLogging(signalR.LogLevel.Information)
-      .withUrl("https://localhost:44302/notify")
+      .withUrl(environment.BASE_URL + "notify")
       .build();
     connection
       .start()
@@ -62,7 +63,7 @@ export class TaoPhieuNhapsComponent implements OnInit, AfterViewInit {
     this.router.navigate(["admin/taophieunhap/them"]);
   }
   exportGeneratePdf() {
-    window.open("https://localhost:44302/api/GeneratePdf/allphieunhap", "_blank");
+    window.open(environment.BASE_URL + "api/GeneratePdf/allphieunhap", "_blank");
   }
   populateForm(id: any) {
     this.service.idphieunhap = id;

@@ -8,22 +8,23 @@ import { ProductService } from '../product.service';
   styleUrls: ['./imagesmodel.component.scss']
 })
 export class ImagesmodelComponent implements OnInit {
-  constructor(public http : HttpClient,
-            public service : ProductService) { }
-  public imageproductList : ImageProduct[]
+  environment = environment;
+  constructor(public http: HttpClient,
+    public service: ProductService) { }
+  public imageproductList: ImageProduct[]
   ngOnInit(): void {
-    this.http.get(environment.URL_API+"SanPhamBienThes/spbt/"+this.service.product.id).subscribe(
-      res=>{
+    this.http.get(environment.URL_API + "SanPhamBienThes/spbt/" + this.service.product.id).subscribe(
+      res => {
         this.imageproductList = res as ImageProduct[]
-        console.log( this.imageproductList)
-        console.log( this.service.product.id)
+        console.log(this.imageproductList)
+        console.log(this.service.product.id)
       },
-      error=>{
+      error => {
       }
     )
   }
 }
-export class ImageProduct{
-  imagePath : string
-  SanPhamId : number
+export class ImageProduct {
+  imagePath: string
+  SanPhamId: number
 }

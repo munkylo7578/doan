@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TaoPhieuNhapService } from '../tao-phieu-nhap.service';
+import { environment } from '../../../../../../environments/environment';
 @Component({
   selector: 'app-tao-phieu-nhap-detail',
   templateUrl: './tao-phieu-nhap-detail.component.html',
@@ -20,6 +21,6 @@ export class TaoPhieuNhapDetailComponent implements OnInit {
     )
   }
   exportGeneratePdf() {
-    window.open("https://localhost:44302/api/GeneratePdf/phieunhapdetail/" + this.phieunhapchitietphieunhap.id, "_blank");
+    window.open(environment.BASE_URL + "api/GeneratePdf/phieunhapdetail/" + this.phieunhapchitietphieunhap.id, "_blank");
   }
 }

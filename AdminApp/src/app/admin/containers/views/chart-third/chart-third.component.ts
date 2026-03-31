@@ -3,6 +3,7 @@ import * as signalR from "@microsoft/signalr";
 import { ChartThirdService } from "./chart-third.service";
 import { ChartOptions, ChartType, ChartDataSets } from "chart.js";
 import { Label } from "ng2-charts";
+import { environment } from "../../../../../environments/environment";
 @Component({
   selector: "app-chart-third",
   templateUrl: "./chart-third.component.html",
@@ -41,7 +42,7 @@ export class ChartThirdComponent implements OnInit {
     this.NhaCungCapSoLuong();
     const connection = new signalR.HubConnectionBuilder()
       .configureLogging(signalR.LogLevel.Information)
-      .withUrl("https://localhost:44302/notify")
+      .withUrl(environment.BASE_URL +"notify")
       .build();
     connection
       .start()

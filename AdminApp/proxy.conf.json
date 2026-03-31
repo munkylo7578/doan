@@ -1,6 +1,6 @@
 {
     "/api": {
-      "target": "https://localhost:44302/",
+      "target": "https://doanapi.munkylo.xyz/",
       "secure": true,
       "changeOrigin": true,
       "pathRewrite": {
