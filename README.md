@@ -1,21 +1,86 @@
-# ĐỒ ÁN TỐT NGHIỆP
-### Website bán hàng quần áo
-### Youtube demo : 
-* https://www.youtube.com/watch?v=yb9iGnOcxqQ&t=195s
-### Website link
-##### Admin side
-* https://angular-cozastore-admin.web.app/
-* Username : admin@gmail.com
-* Password : Eyasuo147852
-##### Customer side
-* https://angular-cozastore-client.web.app/
-### Document
-* https://drive.google.com/file/d/1M9NkKgXiJky3PGXNURIuMwJOfItorSnr/view?usp=sharing
-### Donate me : 
-* Agribank 5505205142674
-* Momo 0868420530
-### Contact me : 
-* Trần Quý Vinh
-* Phone number : 0868420530
-* Linkedin : https://www.linkedin.com/in/tr%E1%BA%A7n-qu%C3%BD-vinh-16a47b205/
-* Facebook : https://www.facebook.com/profile.php?id=100010956674471
+# Docker Guide (Client App + Admin App)
+
+This guide explains how to run **both projects** with Docker:
+
+- `adminapp` on **http://localhost:7000**
+- `clientapp` on **http://localhost:7001**
+
+## Documentation
+
+Project documentation is available here:
+
+- https://drive.google.com/file/d/1M9NkKgXiJky3PGXNURIuMwJOfItorSnr/view?usp=sharing
+
+## Prerequisites
+
+- Install **Docker Desktop**
+- Make sure Docker is running
+
+## Run Both Apps
+
+From the project root (`doan`), run:
+
+```bash
+docker compose up --build -d
+```
+
+Open in browser:
+
+- Admin App: http://localhost:7000
+- Client App: http://localhost:7001
+
+## Run Only One App (Optional)
+
+```bash
+docker compose up --build -d adminapp
+```
+
+```bash
+docker compose up --build -d clientapp
+```
+
+## Useful Commands
+
+### View logs
+
+```bash
+docker compose logs -f
+```
+
+Or for a single service:
+
+```bash
+docker compose logs -f adminapp
+```
+
+```bash
+docker compose logs -f clientapp
+```
+
+### Stop both apps
+
+```bash
+docker compose stop
+```
+
+### Stop one app
+
+```bash
+docker compose stop adminapp
+```
+
+```bash
+docker compose stop clientapp
+```
+
+### Remove containers
+
+```bash
+docker compose down
+```
+
+### Rebuild and run again
+
+```bash
+docker compose up --build -d
+```
