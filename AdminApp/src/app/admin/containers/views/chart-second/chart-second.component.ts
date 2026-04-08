@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import * as signalR from '@microsoft/signalr';
 import { ChartSecondService } from './chart-second.service';
 import { SelectMonthComponent } from './select-month/select-month.component';
-import { environment } from '../../../../../../environments/environment';
+import { environment } from '../../../../../environments/environment';
 @Component({
   selector: 'app-chart-second',
   templateUrl: './chart-second.component.html',

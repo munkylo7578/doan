@@ -11,7 +11,7 @@ import { BrandComponent } from './brand/brand.component';
 import { NotifierService } from 'angular-notifier';
 import { ToastrService } from 'ngx-toastr';
 import * as signalR from '@microsoft/signalr';
-import { environment } from '../../../../../../environments/environment';
+import { environment } from '../../../../../environments/environment';
 @Component({
   selector: 'app-brands',
   templateUrl: './brands.component.html',

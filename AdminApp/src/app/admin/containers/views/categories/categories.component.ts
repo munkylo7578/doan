@@ -11,7 +11,7 @@ import { ToastServiceService } from '../../shared/toast-service.service';
 import { Category, CategoryService } from './category.service';
 import { CategoryComponent } from './category/category.component';
 import * as signalR from '@microsoft/signalr';
-import { environment } from '../../../../../../environments/environment';
+import { environment } from '../../../../../environments/environment';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',

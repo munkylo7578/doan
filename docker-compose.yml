@@ -8,13 +8,8 @@ services:
     image: adminapp:prod
     container_name: adminapp
     restart: unless-stopped
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.adminapp.rule=Host(`admin.example.com`)"
-      - "traefik.http.routers.adminapp.entrypoints=websecure"
-      - "traefik.http.services.adminapp.loadbalancer.server.port=80"
-    networks:
-      - traefik
+    ports:
+      - "7000:80"
 
   clientapp:
     build:
@@ -23,15 +18,6 @@ services:
     image: clientapp:prod
     container_name: clientapp
     restart: unless-stopped
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.clientapp.rule=Host(`shop.example.com`)"
-      - "traefik.http.routers.clientapp.entrypoints=websecure"
-      - "traefik.http.services.clientapp.loadbalancer.server.port=80"
-    networks:
-      - traefik
-
-networks:
-  traefik:
-    external: true
+    ports:
+      - "7001:80"
 
